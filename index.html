@@ -3,20 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>我的第一个网页</title>
-    <style>
+   <style>
+        /* 页面整体设置：深色渐变背景，居中对齐 */
         body {
-            background-color: #f0f8ff;
-            text-align: center;
             font-family: "Microsoft YaHei", sans-serif;
-            margin-top: 100px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 让页面占满整个屏幕高度 */
+            margin: 0;
         }
-        h1 { color: #2c3e50; }
-        p { color: #555; font-size: 18px; }
+
+        /* 核心：卡片样式 */
+        .card {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 20px; /* 圆角 */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* 高级立体阴影 */
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transition: transform 0.3s ease; /* 添加鼠标悬浮动画 */
+        }
+
+        /* 鼠标悬浮在卡片上时，卡片轻微上浮 */
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* 主标题颜色和间距 */
+        h1 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        /* 段落文字样式 */
+        p {
+            color: #666666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            background-color: #2a5298;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 50px; /* 胶囊形按钮 */
+            text-decoration: none; /* 去掉链接下划线 */
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        /* 鼠标悬浮在按钮上时，颜色变浅 */
+        .btn:hover {
+            background-color: #4a7bc8;
+        }
     </style>
 </head>
 <body>
-    <h1>你好，世界！这是我的个人主页</h1>
-    <p>我正在学习 Git 和 Web 开发。</p >
-    <p>我的 GitHub 用户名是：Yuchen10086</p >
+
+    <!-- 整个内容包裹在一个卡片容器里 -->
+    <div class="card">
+        <h1>你好，世界！这是我的个人主页</h1>
+        <p>我正在学习 Git 和 Web 开发。<br>我的 GitHub 用户名是：Yuchen10086</p >
+        
+        <!-- 这是一个按钮，点击会跳转到你的 GitHub -->
+        <a href=" " class="btn" target="_blank">访问我的 GitHub</a >
+    </div>
+
 </body>
 </html>
