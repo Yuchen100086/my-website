@@ -2,31 +2,50 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>首页 - 我的个人主页</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft YaHei", sans-serif; }
-        body { background-color: #f4f7f6; color: #333; line-height: 1.6; }
-        nav { background-color: #2c3e50; padding: 15px 0; text-align: center; }
-        nav a { color: #ffffff; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: bold; transition: color 0.3s; }
-        nav a:hover { color: #1abc9c; }
-        .container { max-width: 800px; margin: 60px auto; background: #ffffff; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
-        h1 { color: #2c3e50; margin-bottom: 20px; }
-        p { color: #555555; font-size: 18px; margin-bottom: 20px; }
-        .btn { display: inline-block; background-color: #1abc9c; color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: background 0.3s; }
-        .btn:hover { background-color: #16a085; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yuchen 的个人主页：一个热爱编程、正在学习 Web 前端开发的新手，在这里记录我的技能与成长。">
+    <meta name="author" content="Yuchen">
+    <title>首页 - Yuchen 的个人主页</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <nav>
-        <a href=" ">首页</a >
-        <a href="about.html">关于我</a >
-        <a href="skills.html">技能</a >
-        <a href="contact.html">联系我</a >
-    </nav>
-    <div class="container">
-        <h1>你好，我是 Yuchen</h1>
-        <p>欢迎来到我的个人主页！我是一个热爱学习编程的新手，目前正在探索 Web 前端开发的世界。</p >
-        <a href="about.html" class="btn">了解我</a >
-    </div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="sakura-layer" aria-hidden="true"></div>
+
+    <header>
+        <nav aria-label="主导航">
+            <a href="index.html" class="active" aria-current="page">首页</a>
+            <a href="about.html">关于我</a>
+            <a href="skills.html">技能</a>
+            <a href="anime.html">二次元</a>
+            <a href="contact.html">联系我</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="container center">
+            <img class="hero-avatar" src="avatar.svg" alt="三笠·阿克曼风格的二次元头像" width="148" height="148">
+
+            <h1 class="hero-name">你好，我是 Yuchen</h1>
+            <p class="typed" data-typed="一个热爱编程、正在探索 Web 前端的新手 ✨">一个热爱编程、正在探索 Web 前端的新手 ✨</p>
+            <p>欢迎来到我的个人主页！我是一个热爱学习编程的新手，目前正在探索 Web 前端开发的世界。</p>
+            <p><a href="about.html" class="btn">了解我</a></p>
+
+            <div class="quick-links">
+                <a class="quick-card" href="about.html"><span>🌸</span>关于我<small>兴趣与日常</small></a>
+                <a class="quick-card" href="skills.html"><span>⚔️</span>技能<small>能力面板</small></a>
+                <a class="quick-card" href="anime.html"><span>📺</span>二次元<small>追番清单</small></a>
+                <a class="quick-card" href="contact.html"><span>💌</span>联系我<small>来聊天吧</small></a>
+            </div>
+        </section>
+    </main>
+
+    <button class="to-top" type="button" aria-label="回到顶部">↑</button>
+
+    <footer>
+        <p>© <span id="year">2026</span> Yuchen · 用 HTML 与 CSS 手写的第一个网站 · 🌸</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="三笠·阿克曼风格的二次元头像">
+    <defs>
+        <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a3542"/>
+            <stop offset="55%" stop-color="#232028"/>
+            <stop offset="100%" stop-color="#141218"/>
+        </linearGradient>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e6ecf7"/>
+            <stop offset="100%" stop-color="#ffe0ec"/>
+        </linearGradient>
+        <linearGradient id="jacket" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d3b184"/>
+            <stop offset="100%" stop-color="#ab8659"/>
+        </linearGradient>
+        <linearGradient id="scarf" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d4483a"/>
+            <stop offset="100%" stop-color="#9d271c"/>
+        </linearGradient>
+        <linearGradient id="scarfTail" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#b8342a"/>
+            <stop offset="100%" stop-color="#7d1d14"/>
+        </linearGradient>
+        <clipPath id="round">
+            <circle cx="60" cy="60" r="59"/>
+        </clipPath>
+    </defs>
+
+    <g clip-path="url(#round)">
+        <rect width="120" height="120" fill="url(#bg)"/>
+
+        <!-- 背景的细小光点 -->
+        <g fill="#a9b8d6" opacity="0.5">
+            <circle cx="19" cy="26" r="2.2"/>
+            <circle cx="101" cy="30" r="1.8"/>
+            <circle cx="99" cy="92" r="2.2"/>
+            <circle cx="17" cy="86" r="1.6"/>
+        </g>
+
+        <!-- 后发：齐下巴的黑色短发 -->
+        <path d="M60 13 C31 13 22 36 23 62 C24 76 26 86 29 94 L91 94 C94 86 96 76 97 62 C98 36 89 13 60 13 Z" fill="url(#hair)"/>
+
+        <!-- 外套 -->
+        <path d="M23 120 C23 103 40 95 60 95 C80 95 97 103 97 120 Z" fill="url(#jacket)"/>
+        <!-- 白衬衫领口 -->
+        <path d="M49 96 L60 108 L71 96 C66 94.5 54 94.5 49 96 Z" fill="#f4f1e6"/>
+        <!-- 立体机动装置的皮质束带 -->
+        <path d="M39 98 L53 120" stroke="#6b4a2f" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M81 98 L67 120" stroke="#6b4a2f" stroke-width="3.4" stroke-linecap="round"/>
+        <!-- 外套翻领 -->
+        <path d="M46 96 C50 102 54 106 60 108" stroke="#8f6c42" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M74 96 C70 102 66 106 60 108" stroke="#8f6c42" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+        <!-- 围巾垂下来的那一截 -->
+        <path d="M33 90 C27 98 25 110 28 120 L44 120 C40 110 40 99 45 92 Z" fill="url(#scarfTail)"/>
+
+        <!-- 脸 -->
+        <ellipse cx="60" cy="57" rx="28" ry="30" fill="#ffe6d8"/>
+
+        <!-- 刘海：中分、服帖的黑色刘海 -->
+        <path d="M32 48 C32 26 45 18 60 18 C75 18 88 26 88 48 C84 40 78 36 72 38 C66 40 62 44 60 48 C56 42 50 38 44 40 C38 42 34 44 32 48 Z" fill="url(#hair)"/>
+        <!-- 发丝高光 -->
+        <path d="M41 27 C47 21.5 56 19.5 62 20.5" stroke="#5d5768" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.65"/>
+
+        <!-- 眉毛：细而平直 -->
+        <path d="M42 50 L54 48.6" stroke="#1c1a22" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M66 48.6 L78 50" stroke="#1c1a22" stroke-width="2.2" stroke-linecap="round"/>
+
+        <!-- 左眼：深灰近黑，冷静的眼神 -->
+        <g>
+            <ellipse cx="48" cy="61" rx="6" ry="7.4" fill="#241f2b"/>
+            <ellipse cx="48" cy="62" rx="4.6" ry="5.6" fill="#6b6472"/>
+            <ellipse cx="48" cy="63" rx="3" ry="3.7" fill="#241f2b"/>
+            <circle cx="45.9" cy="58.2" r="1.7" fill="#ffffff" opacity="0.92"/>
+            <path d="M41.6 56.4 C44 54.3 52 54.3 54.4 56.4" stroke="#241f2b" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- 右眼 -->
+        <g>
+            <ellipse cx="72" cy="61" rx="6" ry="7.4" fill="#241f2b"/>
+            <ellipse cx="72" cy="62" rx="4.6" ry="5.6" fill="#6b6472"/>
+            <ellipse cx="72" cy="63" rx="3" ry="3.7" fill="#241f2b"/>
+            <circle cx="69.9" cy="58.2" r="1.7" fill="#ffffff" opacity="0.92"/>
+            <path d="M65.6 56.4 C68 54.3 76 54.3 78.4 56.4" stroke="#241f2b" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- 鼻尖 -->
+        <path d="M60 66 L60 68.6" stroke="#e0b4a2" stroke-width="1.6" stroke-linecap="round"/>
+
+        <!-- 嘴：几乎抿成一条线，符合她冷静的表情 -->
+        <path d="M56.5 74.5 Q60 76.4 63.5 74.5" stroke="#b5766f" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+
+        <!-- 红色围巾：绕在脖子和下巴下方（她最标志性的东西） -->
+        <path d="M29 88 C35 83 47 81 60 81 C73 81 85 83 91 88 C93 99 79 108 60 108 C41 108 27 99 29 88 Z" fill="url(#scarf)"/>
+        <path d="M33 91 C42 87 52 85.5 60 85.5 C68 85.5 78 87 87 91" stroke="#8f2318" stroke-width="1.6" fill="none" opacity="0.55"/>
+        <path d="M36 98 C46 93 74 93 84 98" stroke="#8f2318" stroke-width="1.6" fill="none" opacity="0.4"/>
+    </g>
+
+    <circle cx="60" cy="60" r="59" fill="none" stroke="#ffffff" stroke-width="2"/>
+</svg>

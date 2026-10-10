@@ -2,37 +2,75 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>关于我 - 我的个人主页</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft YaHei", sans-serif; }
-        body { background-color: #f4f7f6; color: #333; line-height: 1.6; }
-        nav { background-color: #2c3e50; padding: 15px 0; text-align: center; }
-        nav a { color: #ffffff; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: bold; transition: color 0.3s; }
-        nav a:hover { color: #1abc9c; }
-        .container { max-width: 800px; margin: 60px auto; background: #ffffff; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; border-bottom: 2px solid #1abc9c; padding-bottom: 10px; margin-bottom: 20px; }
-        ul { margin-left: 20px; margin-bottom: 20px; color: #555555; font-size: 18px; }
-        li { margin-bottom: 10px; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="关于 Yuchen：一个对技术充满好奇心的学习者，爱好编程、阅读、看番与科技视频。">
+    <meta name="author" content="Yuchen">
+    <title>关于我 - Yuchen 的个人主页</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <nav>
-        <a href=" ">首页</a >
-        <a href="about.html">关于我</a >
-        <a href="skills.html">技能</a >
-        <a href="contact.html">联系我</a >
-    </nav>
-    <div class="container">
-        <h1>关于我</h1>
-        <p>大家好！我是一个对技术充满好奇心的学习者，正在努力掌握 Web 开发的各项技能。</p >
-        <br>
-        <h3 style="color:#2c3e50;">我的兴趣爱好：</h3>
-        <ul>
-            <li>编写代码，尝试新鲜事物</li>
-            <li>阅读小说</li>
-            <li>喜欢看科技类视频</li>
-        </ul>
-        <p>欢迎和我交流！</p >
-    </div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="sakura-layer" aria-hidden="true"></div>
+
+    <header>
+        <nav aria-label="主导航">
+            <a href="index.html">首页</a>
+            <a href="about.html" class="active" aria-current="page">关于我</a>
+            <a href="skills.html">技能</a>
+            <a href="anime.html">二次元</a>
+            <a href="contact.html">联系我</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="container">
+            <h1 class="page-title">关于我</h1>
+            <p>大家好！我是一个对技术充满好奇心的学习者，正在努力掌握 Web 开发的各项技能。</p>
+
+            <h2 class="section-title">我的兴趣爱好</h2>
+            <div class="card-grid">
+                <div class="info-card">
+                    <h3><span>💻</span>写代码</h3>
+                    <p>喜欢尝试新鲜事物，看着一行行代码变成能点、能动的网页，很有成就感。</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📖</span>阅读小说</h3>
+                    <p>沉浸在别人的故事里，顺便攒一点写文案的灵感。</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📺</span>看番 &amp; 科技视频</h3>
+                    <p>一边追番放松，一边看看科技类视频了解最近又出了什么新东西。</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">我的二次元浓度</h2>
+            <p>喜欢可爱的东西，也喜欢热血的故事。这个网站就是照着“樱花 + 渐变 + 圆角卡片”的感觉做的。</p>
+            <div class="tags">
+                <span class="tag">治愈番</span>
+                <span class="tag">日常番</span>
+                <span class="tag">热血番</span>
+                <span class="tag">轻小说</span>
+                <span class="tag">手绘风</span>
+                <span class="tag">樱花</span>
+            </div>
+
+            <h2 class="section-title">我正在做的事</h2>
+            <ul>
+                <li>学习 HTML 与 CSS，把学到的知识用到这个网站上</li>
+                <li>练习 Git，把每次修改都提交到 GitHub</li>
+                <li>尝试给页面加上一点小动画，让它“活”起来</li>
+            </ul>
+
+            <p>想聊聊网页或者喜欢的作品？欢迎<a href="contact.html">和我交流</a>！</p>
+        </section>
+    </main>
+
+    <button class="to-top" type="button" aria-label="回到顶部">↑</button>
+
+    <footer>
+        <p>© <span id="year">2026</span> Yuchen · 用 HTML 与 CSS 手写的第一个网站 · 🌸</p>
+    </footer>
 </body>
 </html>

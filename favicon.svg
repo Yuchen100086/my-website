@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+    <defs>
+        <linearGradient id="petal" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffd6e2"/>
+            <stop offset="100%" stop-color="#ff8fab"/>
+        </linearGradient>
+        <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fff0b8"/>
+            <stop offset="100%" stop-color="#ffd166"/>
+        </linearGradient>
+    </defs>
+
+    <g transform="translate(32 34)">
+        <g fill="url(#petal)">
+            <path d="M0 -4 C7 -13 9 -22 0 -27 C-9 -22 -7 -13 0 -4 Z"/>
+            <path d="M0 -4 C7 -13 9 -22 0 -27 C-9 -22 -7 -13 0 -4 Z" transform="rotate(72)"/>
+            <path d="M0 -4 C7 -13 9 -22 0 -27 C-9 -22 -7 -13 0 -4 Z" transform="rotate(144)"/>
+            <path d="M0 -4 C7 -13 9 -22 0 -27 C-9 -22 -7 -13 0 -4 Z" transform="rotate(216)"/>
+            <path d="M0 -4 C7 -13 9 -22 0 -27 C-9 -22 -7 -13 0 -4 Z" transform="rotate(288)"/>
+        </g>
+        <circle cx="0" cy="0" r="6.5" fill="url(#core)"/>
+        <circle cx="-2" cy="-2" r="1.6" fill="#fffdf0" opacity="0.9"/>
+    </g>
+</svg>

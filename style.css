@@ -1,0 +1,890 @@
+/* ============================================================
+   Yuchen 的个人主页 · 二次元樱花主题
+   全站共用一份样式表，改一次即可全站生效。
+   想换配色：只改下面 :root 里的变量。
+   ============================================================ */
+
+:root {
+    /* 主色板 */
+    --sakura: #ffb7c5;
+    --sakura-deep: #ff8fab;
+    --lavender: #c8a2ff;
+    --lavender-deep: #a97bf0;
+    --sky: #8fd3f4;
+    --mint: #7fe0d4;
+    --ink: #4a3f55;
+    --ink-soft: #8a7d99;
+
+    /* 渐变 */
+    --grad-main: linear-gradient(135deg, #ff9fb8 0%, #c8a2ff 100%);
+    --grad-page: linear-gradient(160deg, #fff2f6 0%, #f7ecff 45%, #eaf6ff 100%);
+
+    --radius: 24px;
+    --shadow: 0 10px 30px rgba(200, 162, 255, 0.22);
+    --shadow-hover: 0 18px 42px rgba(255, 143, 171, 0.34);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--grad-page);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* 背景柔光光斑 */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::before {
+    width: 380px;
+    height: 380px;
+    top: -120px;
+    left: -100px;
+    background: var(--sakura);
+}
+
+body::after {
+    width: 420px;
+    height: 420px;
+    bottom: -160px;
+    right: -120px;
+    background: var(--lavender);
+}
+
+/* ---------- 飘落的樱花花瓣（JS 生成，纯装饰） ---------- */
+.sakura-layer {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.petal {
+    position: absolute;
+    top: -10vh;
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, #ffd6e2, var(--sakura-deep));
+    border-radius: 100% 0 100% 0;
+    opacity: 0;
+    animation: petal-fall linear infinite;
+}
+
+@keyframes petal-fall {
+    0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate3d(var(--drift, 60px), 110vh, 0) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* 键盘用户按 Tab 时出现的“跳到主要内容”链接 */
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: -9999px;
+    background: var(--grad-main);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 0 0 14px 0;
+    text-decoration: none;
+    z-index: 200;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+/* ---------- 顶部导航 ---------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 2px solid rgba(255, 183, 197, 0.55);
+}
+
+nav {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 12px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 10px;
+}
+
+nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #fff;
+    background: var(--grad-main);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 143, 171, 0.4);
+}
+
+/* 当前所在页面高亮 */
+nav a.active {
+    color: #fff;
+    background: var(--grad-main);
+    box-shadow: 0 6px 16px rgba(255, 143, 171, 0.4);
+}
+
+/* ---------- 内容区 ---------- */
+main {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    max-width: 820px;
+    margin: 56px auto;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 44px 40px;
+    border-radius: var(--radius);
+    border: 2px solid rgba(255, 183, 197, 0.6);
+    box-shadow: var(--shadow);
+}
+
+.container.center {
+    text-align: center;
+}
+
+/* 标题：圆润字体 */
+h1 {
+    font-family: "幼圆", "Yuanti SC", "Microsoft YaHei", sans-serif;
+    color: var(--ink);
+    font-size: 30px;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+h1.page-title {
+    position: relative;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+}
+
+h1.page-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 78px;
+    height: 5px;
+    border-radius: 50px;
+    background: var(--grad-main);
+}
+
+.container.center h1.page-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h2.section-title {
+    font-family: "幼圆", "Yuanti SC", "Microsoft YaHei", sans-serif;
+    font-size: 21px;
+    color: var(--ink);
+    margin: 28px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 标题前的小樱花 */
+h2.section-title::before {
+    content: "🌸";
+    font-size: 18px;
+}
+
+p {
+    color: var(--ink-soft);
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+ul {
+    margin: 0 0 18px 6px;
+    color: var(--ink-soft);
+    font-size: 17px;
+    list-style: none;
+}
+
+li {
+    margin-bottom: 10px;
+    padding-left: 26px;
+    position: relative;
+}
+
+li::before {
+    content: "✿";
+    position: absolute;
+    left: 0;
+    color: var(--sakura-deep);
+}
+
+main a {
+    color: var(--lavender-deep);
+    font-weight: bold;
+    text-underline-offset: 3px;
+}
+
+main a:hover {
+    color: var(--sakura-deep);
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+    display: inline-block;
+    background: var(--grad-main);
+    color: #fff;
+    padding: 13px 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 143, 171, 0.42);
+    transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+}
+
+.btn:hover,
+.btn:focus {
+    color: #fff;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 30px rgba(200, 162, 255, 0.5);
+    filter: saturate(1.15);
+}
+
+/* ---------- 首页主视觉 ---------- */
+.hero-avatar {
+    width: 148px;
+    height: 148px;
+    margin: 0 auto 18px;
+    display: block;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 26px rgba(255, 143, 171, 0.45);
+    animation: float 4.5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-name {
+    font-size: 34px;
+    background: var(--grad-main);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--lavender-deep);
+}
+
+/* 打字机副标题 */
+.typed {
+    font-size: 17px;
+    color: var(--ink-soft);
+    min-height: 28px;
+    margin-bottom: 22px;
+}
+
+.typed::after {
+    content: "▌";
+    color: var(--sakura-deep);
+    animation: caret 1s steps(1) infinite;
+}
+
+.typed.done::after {
+    content: "";
+}
+
+@keyframes caret {
+    50% { opacity: 0; }
+}
+
+/* 首页快捷入口 */
+.quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.quick-card {
+    flex: 1 1 150px;
+    max-width: 200px;
+    padding: 18px 14px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(200, 162, 255, 0.35);
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: bold;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.quick-card span {
+    display: block;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.quick-card small {
+    display: block;
+    font-weight: normal;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+}
+
+.quick-card:hover,
+.quick-card:focus {
+    transform: translateY(-6px);
+    border-color: var(--sakura-deep);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ---------- 技能卡片（二次元能力条） ---------- */
+.skill-box {
+    background: linear-gradient(135deg, rgba(255, 183, 197, 0.16), rgba(143, 211, 244, 0.16));
+    border: 2px solid rgba(255, 183, 197, 0.5);
+    border-radius: 18px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.skill-box:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.skill-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.skill-head h3 {
+    font-size: 18px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skill-head .ico {
+    font-size: 20px;
+}
+
+.lv {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    background: var(--grad-main);
+    padding: 3px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.skill-box p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+}
+
+/* 能力条 */
+.bar {
+    height: 12px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(200, 162, 255, 0.4);
+    overflow: hidden;
+}
+
+.bar > span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 50px;
+    background: var(--grad-main);
+    transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bar.in > span {
+    width: var(--v, 50%);
+}
+
+/* ---------- 卡片网格 ---------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(200, 162, 255, 0.35);
+    border-radius: 18px;
+    padding: 18px;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px) rotate(-0.6deg);
+    border-color: var(--sakura-deep);
+    box-shadow: var(--shadow-hover);
+}
+
+.info-card h3 {
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-card p {
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+/* 卡片内部的标签，间距收紧一些 */
+.info-card .tags {
+    margin: 0 0 10px;
+}
+
+.info-card .tags .tag {
+    font-size: 12px;
+    padding: 2px 11px;
+}
+
+/* 正文里的代码片段 */
+code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.92em;
+    background: rgba(200, 162, 255, 0.16);
+    color: var(--lavender-deep);
+    padding: 1px 7px;
+    border-radius: 6px;
+}
+
+/* 标签 */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.tag {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--lavender-deep);
+    background: rgba(200, 162, 255, 0.16);
+    border: 1px solid rgba(200, 162, 255, 0.45);
+    padding: 4px 14px;
+    border-radius: 50px;
+    transition: background 0.25s, color 0.25s;
+}
+
+.tag:hover {
+    background: var(--grad-main);
+    color: #fff;
+}
+
+/* 追番状态标签 */
+.tag.watching {
+    color: #1f9e8f;
+    background: rgba(127, 224, 212, 0.2);
+    border-color: rgba(127, 224, 212, 0.75);
+}
+
+.tag.done {
+    color: var(--lavender-deep);
+    background: rgba(200, 162, 255, 0.2);
+    border-color: rgba(200, 162, 255, 0.7);
+}
+
+.tag.plan {
+    color: var(--sakura-deep);
+    background: rgba(255, 183, 197, 0.25);
+    border-color: rgba(255, 143, 171, 0.7);
+}
+
+/* ---------- 提示框 ---------- */
+.note {
+    background: rgba(255, 183, 197, 0.18);
+    border: 1px dashed rgba(255, 143, 171, 0.75);
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+}
+
+/* ---------- 联系方式 ---------- */
+.contact-info {
+    font-size: 17px;
+    margin-bottom: 16px;
+}
+
+.contact-info a {
+    color: var(--lavender-deep);
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px dashed rgba(169, 123, 240, 0.5);
+    padding-bottom: 1px;
+}
+
+.contact-info a:hover,
+.contact-info a:focus {
+    color: var(--sakura-deep);
+    border-bottom-color: var(--sakura-deep);
+}
+
+/* ---------- 页脚 ---------- */
+footer {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.78);
+    border-top: 2px solid rgba(255, 183, 197, 0.55);
+    color: var(--ink-soft);
+    text-align: center;
+    padding: 20px 16px;
+    margin-top: 44px;
+    font-size: 14px;
+}
+
+footer p {
+    color: inherit;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ---------- 回到顶部 ---------- */
+.to-top {
+    position: fixed;
+    /* 让开右下角的云朵 */
+    right: 134px;
+    bottom: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--grad-main);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 143, 171, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+    z-index: 70;
+}
+
+.to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.to-top:hover {
+    filter: saturate(1.2);
+}
+
+/* ---------- 手机 / 窄屏适配 ---------- */
+@media (max-width: 640px) {
+    nav {
+        gap: 6px;
+        padding: 10px 8px;
+    }
+
+    nav a {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .container {
+        margin: 26px 12px;
+        padding: 26px 20px;
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .hero-name {
+        font-size: 26px;
+    }
+
+    .hero-avatar {
+        width: 116px;
+        height: 116px;
+    }
+
+    p,
+    ul,
+    .contact-info {
+        font-size: 15.5px;
+    }
+
+    .quick-card {
+        max-width: none;
+        flex: 1 1 130px;
+    }
+
+    .to-top {
+        right: 104px;
+        bottom: 20px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ---------- 右下角云朵：点击播放 BGM ---------- */
+.cloud-btn {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 106px;
+    height: 78px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 80;
+    animation: cloud-float 5s ease-in-out infinite;
+    transition: transform 0.25s, filter 0.25s;
+}
+
+.cloud-btn svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 6px 14px rgba(143, 150, 200, 0.35));
+}
+
+.cloud-btn:hover,
+.cloud-btn:focus-visible {
+    transform: translateY(-6px) scale(1.06);
+    filter: drop-shadow(0 10px 20px rgba(150, 120, 220, 0.5));
+}
+
+.cloud-btn:focus-visible {
+    outline: 3px solid var(--lavender);
+    outline-offset: 3px;
+    border-radius: 24px;
+}
+
+/* 播放中：云朵跳起来 */
+.cloud-btn.playing {
+    animation: cloud-bounce 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes cloud-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes cloud-bounce {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-15px) scale(1.07); }
+}
+
+/* 播放时飘出来的音符 */
+.cloud-note {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    font-size: 20px;
+    color: var(--lavender-deep);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cloud-note.n2 {
+    color: var(--sakura-deep);
+    font-size: 16px;
+    animation-delay: 0.6s !important;
+}
+
+.cloud-btn.playing .cloud-note {
+    animation: note-float 1.5s ease-out infinite;
+}
+
+@keyframes note-float {
+    0% { opacity: 0; transform: translate(-50%, 0) scale(0.7); }
+    20% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -52px) scale(1.15); }
+}
+
+/* 悬停时的小提示 */
+.cloud-hint {
+    position: fixed;
+    right: 24px;
+    bottom: 104px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 2px solid rgba(255, 183, 197, 0.75);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s, transform 0.25s;
+    pointer-events: none;
+}
+
+.cloud-btn:hover .cloud-hint,
+.cloud-btn:focus-visible .cloud-hint,
+.cloud-btn.playing .cloud-hint,
+.cloud-btn.hint-on .cloud-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 右下角的小气泡提示 */
+.toast {
+    position: fixed;
+    right: 22px;
+    bottom: 156px;
+    max-width: 268px;
+    background: rgba(255, 255, 255, 0.97);
+    border: 2px solid rgba(255, 143, 171, 0.7);
+    border-radius: 18px;
+    padding: 11px 15px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    z-index: 90;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast code {
+    font-size: 12px;
+    word-break: break-all;
+}
+
+/* 窄屏下把云朵和提示缩小。
+   注意：这一段必须放在上面那些规则“之后”，
+   否则同优先级的 .cloud-btn 会被桌面版的尺寸覆盖。 */
+@media (max-width: 640px) {
+    .cloud-btn {
+        right: 10px;
+        bottom: 12px;
+        width: 84px;
+        height: 62px;
+    }
+
+    .cloud-hint {
+        right: 14px;
+        bottom: 84px;
+        font-size: 12px;
+    }
+
+    .toast {
+        right: 12px;
+        left: 12px;
+        bottom: 128px;
+        max-width: none;
+    }
+}
+
+/* ---------- 尊重“减少动态效果”系统设置 ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .sakura-layer {
+        display: none;
+    }
+
+    .bar > span {
+        width: var(--v, 50%);
+    }
+}
