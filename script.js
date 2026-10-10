@@ -182,46 +182,87 @@
             }, 5000);
         }
 
-        var audio = new Audio(BGM_SRC);
+        // 把 <audio> 放进页面（隐藏）。
+        // 用 preload='auto' 让浏览器一打开页面就悄悄开始缓冲，
+        // 这样等用户点云朵时通常已经缓冲好了——用 preload='none' 的话，
+        // 点了才开始下载，网速慢的时候会长时间没有声音，像是坏了。
+        var audio = document.createElement('audio');
+        audio.src = BGM_SRC;
         audio.loop = true;
-        audio.preload = 'none';
+        audio.preload = 'auto';
         audio.volume = 0.85;
+        audio.setAttribute('aria-hidden', 'true');
+        audio.style.display = 'none';
+
+        var hintEl = btn.querySelector('.cloud-hint');
+        var HINT_IDLE = '♪ 好想玩原神';
+        var HINT_LOAD = '⏳ 缓冲中…';
+        var userAsked = false;
 
         function setPlaying(on) {
             btn.classList.toggle('playing', on);
             btn.setAttribute('aria-pressed', on ? 'true' : 'false');
         }
 
+        // 还在等数据时给出明确反馈，否则点下去没动静很像坏掉了
+        function setLoading(on) {
+            btn.classList.toggle('loading', on);
+            hintEl.textContent = on ? HINT_LOAD : HINT_IDLE;
+        }
+
+        function fail(msg) {
+            setPlaying(false);
+            setLoading(false);
+            showToast(msg);
+        }
+
+        var MISSING_MSG = '🌸 音频没能加载～<br>确认 <code>audio/haoxiang-wan-yuanshen.mp3</code> ' +
+            '存在且文件名一致，然后刷新页面。';
+
         btn.addEventListener('click', function () {
+            userAsked = true;
+
             // 正在播放 → 暂停
             if (!audio.paused) {
                 audio.pause();
-                setPlaying(false);
                 return;
             }
 
-            var p = audio.play();
+            if (audio.error) {
+                fail(MISSING_MSG);
+                return;
+            }
 
+            // 数据还不够就先显示“缓冲中…”
+            if (audio.readyState < 3) {
+                setLoading(true);
+            }
+
+            var p = audio.play();
             if (p && typeof p.then === 'function') {
-                p.then(function () {
-                    setPlaying(true);
-                }).catch(function () {
-                    // 文件不存在，或浏览器拦住了播放
-                    setPlaying(false);
-                    showToast('🌸 还没找到音频文件～<br>把《好想玩原神》的 MP3 放到 ' +
-                        '<code>audio/haoxiang-wan-yuanshen.mp3</code>，' +
-                        '再点一次云朵就能播放啦。');
+                p.catch(function (err) {
+                    fail('🔇 浏览器拦住了播放（' + err.name + '）<br>先点一下页面空白处，再点云朵试试。');
                 });
-            } else {
-                setPlaying(true);
             }
         });
 
+        // 以真实的媒体事件为准，而不是假设点了就能放
+        audio.addEventListener('playing', function () { setLoading(false); setPlaying(true); });
+        audio.addEventListener('waiting', function () { setLoading(true); });
+        audio.addEventListener('stalled', function () { setLoading(true); });
+        audio.addEventListener('pause', function () { setLoading(false); setPlaying(false); });
         audio.addEventListener('ended', function () { setPlaying(false); });
-        audio.addEventListener('pause', function () { setPlaying(false); });
-        audio.addEventListener('play', function () { setPlaying(true); });
+        audio.addEventListener('error', function () {
+            setPlaying(false);
+            setLoading(false);
+            // 页面加载时 preload 失败不算用户操作，不要主动弹提示
+            if (userAsked) {
+                showToast(MISSING_MSG);
+            }
+        });
 
         document.body.appendChild(btn);
+        document.body.appendChild(audio);
         document.body.appendChild(toast);
 
         // 刚打开页面时，让“♪ 好想玩原神”的提示自动出现几秒，

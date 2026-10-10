@@ -579,17 +579,6 @@ code {
     border-color: rgba(255, 143, 171, 0.7);
 }
 
-/* ---------- 提示框 ---------- */
-.note {
-    background: rgba(255, 183, 197, 0.18);
-    border: 1px dashed rgba(255, 143, 171, 0.75);
-    border-radius: 14px;
-    padding: 12px 16px;
-    font-size: 14px;
-    color: var(--ink-soft);
-    margin-bottom: 24px;
-}
-
 /* ---------- 联系方式 ---------- */
 .contact-info {
     font-size: 17px;
@@ -751,6 +740,15 @@ footer p {
     animation: cloud-bounce 0.55s ease-in-out infinite alternate;
 }
 
+/* 缓冲中：云朵一闪一闪，提示“正在加载” */
+.cloud-btn.loading svg {
+    animation: cloud-pulse 1s ease-in-out infinite;
+}
+
+@keyframes cloud-pulse {
+    50% { opacity: 0.45; }
+}
+
 @keyframes cloud-float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-9px); }
@@ -811,6 +809,7 @@ footer p {
 .cloud-btn:hover .cloud-hint,
 .cloud-btn:focus-visible .cloud-hint,
 .cloud-btn.playing .cloud-hint,
+.cloud-btn.loading .cloud-hint,
 .cloud-btn.hint-on .cloud-hint {
     opacity: 1;
     transform: translateY(0);
