@@ -318,6 +318,8 @@ main a:hover {
 .hero-avatar {
     width: 148px;
     height: 148px;
+    /* 无论原图是不是正方形，都按圆形裁切，避免被拉变形 */
+    object-fit: cover;
     margin: 0 auto 18px;
     display: block;
     border-radius: 50%;
